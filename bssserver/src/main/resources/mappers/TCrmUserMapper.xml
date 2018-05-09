@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eastelsoft.smartiot.bssserver.dao.TCrmUserMapper" >
+  <resultMap id="BaseResultMap" type="com.eastelsoft.smartiot.bssserver.domain.TCrmUser" >
+    <id column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="CUSTOMER_ID" property="customerId" jdbcType="VARCHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="SERVICE_NUMBER" property="serviceNumber" jdbcType="VARCHAR" />
+    <result column="PAY_TYPE" property="payType" jdbcType="INTEGER" />
+    <result column="LIFECYCLE_STATUS" property="lifecycleStatus" jdbcType="VARCHAR" />
+    <result column="PARTNER_ID" property="partnerId" jdbcType="VARCHAR" />
+    <result column="EFFECTIVE_TIME" property="effectiveTime" jdbcType="TIMESTAMP" />
+    <result column="EXPIRATION_TIME" property="expirationTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="IDENTITY_TYPE" property="identityType" jdbcType="INTEGER" />
+    <result column="IDENTITY_CODE" property="identityCode" jdbcType="VARCHAR" />
+    <result column="IDENTIFY_FILE" property="identifyFile" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_crm_user
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.eastelsoft.smartiot.bssserver.domain.TCrmUser" >
+    insert into t_crm_user (USER_ID, CUSTOMER_ID, PRODUCT_ID, 
+      SERVICE_NUMBER, PAY_TYPE, LIFECYCLE_STATUS, 
+      PARTNER_ID, EFFECTIVE_TIME, EXPIRATION_TIME, 
+      UPDATED_TIME, USER_NAME, IDENTITY_TYPE, 
+      IDENTITY_CODE, IDENTIFY_FILE)
+    values (#{userId,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, 
+      #{serviceNumber,jdbcType=VARCHAR}, #{payType,jdbcType=INTEGER}, #{lifecycleStatus,jdbcType=VARCHAR}, 
+      #{partnerId,jdbcType=VARCHAR}, #{effectiveTime,jdbcType=TIMESTAMP}, #{expirationTime,jdbcType=TIMESTAMP}, 
+      #{updatedTime,jdbcType=TIMESTAMP}, #{userName,jdbcType=VARCHAR}, #{identityType,jdbcType=INTEGER}, 
+      #{identityCode,jdbcType=VARCHAR}, #{identifyFile,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.eastelsoft.smartiot.bssserver.domain.TCrmUser" >
+    update t_crm_user
+    set CUSTOMER_ID = #{customerId,jdbcType=VARCHAR},
+      PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      SERVICE_NUMBER = #{serviceNumber,jdbcType=VARCHAR},
+      PAY_TYPE = #{payType,jdbcType=INTEGER},
+      LIFECYCLE_STATUS = #{lifecycleStatus,jdbcType=VARCHAR},
+      PARTNER_ID = #{partnerId,jdbcType=VARCHAR},
+      EFFECTIVE_TIME = #{effectiveTime,jdbcType=TIMESTAMP},
+      EXPIRATION_TIME = #{expirationTime,jdbcType=TIMESTAMP},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      IDENTITY_TYPE = #{identityType,jdbcType=INTEGER},
+      IDENTITY_CODE = #{identityCode,jdbcType=VARCHAR},
+      IDENTIFY_FILE = #{identifyFile,jdbcType=VARCHAR}
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select USER_ID, CUSTOMER_ID, PRODUCT_ID, SERVICE_NUMBER, PAY_TYPE, LIFECYCLE_STATUS, 
+    PARTNER_ID, EFFECTIVE_TIME, EXPIRATION_TIME, UPDATED_TIME, USER_NAME, IDENTITY_TYPE, 
+    IDENTITY_CODE, IDENTIFY_FILE
+    from t_crm_user
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select USER_ID, CUSTOMER_ID, PRODUCT_ID, SERVICE_NUMBER, PAY_TYPE, LIFECYCLE_STATUS, 
+    PARTNER_ID, EFFECTIVE_TIME, EXPIRATION_TIME, UPDATED_TIME, USER_NAME, IDENTITY_TYPE, 
+    IDENTITY_CODE, IDENTIFY_FILE
+    from t_crm_user
+  </select>
+</mapper>
